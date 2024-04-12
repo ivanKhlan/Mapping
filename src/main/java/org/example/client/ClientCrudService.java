@@ -1,9 +1,7 @@
 package org.example.client;
 
 import org.example.storage.hibernate.HibernateUtil;
-import org.example.ticket.Ticket;
 import org.example.ticket.TicketCrudService;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -18,7 +16,7 @@ public class ClientCrudService {
         util = HibernateUtil.getINSTANCE();
     }
 
-    public Client getClientById(int id) {
+    public Client getClientById(long id) {
         Session session = util.getSessionFactory().openSession();
         Client client = session.get(Client.class, id);
         session.close();
@@ -68,6 +66,17 @@ public class ClientCrudService {
             transaction.commit();
         }
 
+    }
+
+    public boolean checkContainsClientId(long id) {
+
+        List<Client> clients = getAllClients();
+        for (Client client : clients) {
+            if (client.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

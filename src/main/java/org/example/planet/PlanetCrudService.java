@@ -1,5 +1,6 @@
 package org.example.planet;
 
+import org.example.client.Client;
 import org.example.storage.hibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -65,5 +66,20 @@ public class PlanetCrudService {
             transaction.commit();
         }
 
+    }
+    public boolean checkContainsPlanetId(String fromPlanet, String toPlanet) {
+
+        boolean from = false;
+        boolean to = false;
+        List<Planet> planets = getAllPlanets();
+        for (Planet planet : planets) {
+            if (planet.getId().equals(fromPlanet)) {
+                from = true;
+            }
+            if (planet.getId().equals(toPlanet)) {
+                to = true;
+            }
+        }
+        return from && to;
     }
 }

@@ -1,11 +1,12 @@
 package org.example.planet;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import org.example.ticket.Ticket;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Table(name = "planet")
 @Entity
